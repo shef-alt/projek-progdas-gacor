@@ -1,19 +1,24 @@
-#ifndef __PLAYER
-#define __PLAYER
+#ifndef __USER
+#define __USER
 
 #include <string>
+#include <iostream>
 
 using namespace std;
-
 class User {
+   protected:
+      static long stock;
+
    private:
-      string username;
-      string password;
       int rekening;
       long saldo;
+      static long saldo2; //Untuk rekening kedua
 
    public:
-      User(const char* username, const char* pw, int rek, long saldo);
+      int pin;
+      string username;
+      static string log;
+      User(const char* username, int pin, int rek, long saldo);
 
       // getter
       string getName(){
@@ -21,13 +26,28 @@ class User {
       }
 
       // setter
-      void userInput();
-      void checkIf(string username, string password);
+      // void userInput();
+      // void checkIf(string username, string password);
       void chooseOpsi();
       void setOpsi(int opsi);
       void addSaldo(long saldo);
       void setRekening(int rek);
       void display();
-      void exit();
+      void transfer();
 };
+
+class Admin : public User {
+   private:
+      string password;
+
+   public:
+      Admin(const char* password);
+      void adminInput();
+      void opsiAdmin();
+      void setOpsiAdmin(int opsi);
+};
+
+void login();
+void start();
+void list(string username, int pin);
 #endif 

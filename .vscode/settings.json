@@ -37,13 +37,8 @@
   "C_Cpp_Runner.warningsAsError": false,
   "C_Cpp_Runner.compilerArgs": [],
   "C_Cpp_Runner.linkerArgs": [],
-  "C_Cpp_Runner.includePaths": [
-    "${workspaceFolder}/**"
-  ],
-  "C_Cpp_Runner.includeSearch": [
-    "*",
-    "**/*"
-  ],
+  "C_Cpp_Runner.includePaths": ["${workspaceFolder}/**"],
+  "C_Cpp_Runner.includeSearch": ["*", "**/*"],
   "C_Cpp_Runner.excludeSearch": [
     "**/build",
     "**/build/**",
@@ -61,6 +56,8 @@
   "C_Cpp.errorSquiggles": "disabled",
   "files.associations": {
     "xstring": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "cmath": "cpp",
+    "string": "cpp"
   }
 }
