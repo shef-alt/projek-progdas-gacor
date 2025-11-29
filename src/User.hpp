@@ -8,29 +8,26 @@ using namespace std;
 class User {
    protected:
       static long stock;
+      static string log;
 
    private:
+      string username;
+      int pin;
       int rekening;
       long saldo;
       static long saldo2; //Untuk rekening kedua
 
    public:
-      int pin;
-      string username;
-      static string log;
+      
       User(const char* username, int pin, int rek, long saldo);
 
       // getter
-      string getName(){
-         return this->username;
-      }
+      string getName();
+      int getPin();
 
       // setter
-      // void userInput();
-      // void checkIf(string username, string password);
       void chooseOpsi();
       void setOpsi(int opsi);
-      void addSaldo(long saldo);
       void setRekening(int rek);
       void display();
       void transfer();
@@ -42,12 +39,13 @@ class Admin : public User {
 
    public:
       Admin(const char* password);
+
       void adminInput();
       void opsiAdmin();
       void setOpsiAdmin(int opsi);
 };
 
-void login();
 void start();
+void login();
 void list(string username, int pin);
 #endif 

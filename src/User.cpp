@@ -4,20 +4,26 @@
 
 // User //
 User::User(const char* u, int pin, int rek, long saldo)
-   : username(u), pin(pin), rekening(rek), saldo(saldo) 
-   {
-      
-   }
+   : username(u), pin(pin), rekening(rek), saldo(saldo) {}
+
 long User::stock = 500000000;
 long User::saldo2 = 0;  //Saldo awal untuk tiap rekening kedua adalah nol
 string User::log = "";
 
-User user1 = User("Nala", 123456, 1, 999999999);
-User user2 = User("Nopal", 123456, 1, 5000000);
-User user3 = User("Santos", 123456, 1, 5000000);
-User user4 = User("Arkana", 123456, 1, 5000000);
-User user5 = User("Warsun", 123456, 1, 5000000);
+User user1 = User("Nala", 123456, 1, 6500000);
+User user2 = User("Nopal", 567241, 1, 5000000);
+User user3 = User("Santos", 721949, 1, 3200000);
+User user4 = User("Arkana", 652834, 1, 1300000);
+User user5 = User("Warsun", 654321, 1, 50000000);
 Admin admin = Admin("admin6767");
+
+string User::getName(){
+   return this->username;
+}
+
+int User::getPin(){
+   return this->pin;
+}
 
 void User::chooseOpsi(){
    int opsi;
@@ -42,7 +48,7 @@ void User::setOpsi(int opsi){
          cin >> saldo;
          this->saldo -= saldo;
          User::stock -= saldo;
-         log += this->username + " Menambah saldo sebesar: Rp" + to_string(saldo) + "\n\n";
+         log += getName() + " Menambah saldo sebesar: Rp" + to_string(saldo) + "\n\n";
          break;
       case 3:
          cout << "===============================\n";
@@ -50,7 +56,7 @@ void User::setOpsi(int opsi){
          cin >> saldo;
          this->saldo += saldo;
          User::stock += saldo;
-         log += this->username + " Menarik uang sebesar: Rp" + to_string(saldo) + "\n\n";
+         log += getName() + " Menarik uang sebesar: Rp" + to_string(saldo) + "\n\n";
          break;
       case 4:
          cout << "===============================\n";
@@ -118,7 +124,7 @@ void User::transfer(){
    }else if(opsi == 3){
       bank = "arkana";
    }
-   log += this->username + " Melakukan transfer ke Bank " + bank + " dengan nomor rekening " + to_string(norek) + " sebesar " + to_string(nominal) + "\n\n";
+   log += getName() + " Melakukan transfer ke Bank " + bank + " dengan nomor rekening " + to_string(norek) + " sebesar " + to_string(nominal) + "\n\n";
 }
 
 void User::setRekening(int rek){
@@ -152,7 +158,7 @@ void User::setRekening(int rek){
          this->saldo -=nominal;
          User::saldo2 += nominal;
       }
-      log += this->username + " Memindahkan saldo ke rekening " + to_string(pindah) + " sebesar " + to_string(nominal) + "\n\n";
+      log += getName() + " Memindahkan saldo ke rekening " + to_string(pindah) + " sebesar " + to_string(nominal) + "\n\n";
    }
 }
 
@@ -167,22 +173,6 @@ void User::display(){
    }
    chooseOpsi();
 }
-
-// void User::log(int opsi, int info){
-//    switch(opsi){
-//       case 1:
-//          msg += this->username + " Mengecek saldo dan akun"; break;
-//       case 2:
-//          msg += this->username + " Menambah saldo sebesar: Rp" + to_string(info);; break;
-//       case 3:
-//          msg += this->username + " Menarik uang sebesar: Rp" + to_string(info);; break;
-//       case 4:
-//          msg += this->username + " Melakukan transfer ke Bank " + to_string(info); + " dengan nomor rekening " + to_string(info); + " sebesar " + to_string(info);; break;
-//       case 5:
-//       break;
-//    }
-//    cout << endl;
-// }
 
 // Admin //
 Admin::Admin(const char* password)
@@ -277,15 +267,15 @@ void login(){
 }
 
 void list(string username, int pin){
-   if (user1.pin == pin && user1.username == username) {
+   if (user1.getPin() == pin && user1.getName() == username) {
       user1.chooseOpsi();
-   }else if (user2.pin == pin && user2.username == username) {
+   }else if (user2.getPin() == pin && user2.getName() == username) {
       user2.chooseOpsi();
-   }else if (user3.pin == pin && user3.username == username) {
+   }else if (user3.getPin() == pin && user3.getName() == username) {
       user3.chooseOpsi();
-   }else if (user4.pin == pin && user4.username == username) {
+   }else if (user4.getPin() == pin && user4.getName() == username) {
       user4.chooseOpsi();
-   }else if (user5.pin == pin && user5.username == username) {
+   }else if (user5.getPin() == pin && user5.getName() == username) {
       user5.chooseOpsi();
    }else {
       cout << "Username atau pin yang anda masukkan tidak ditemukan!\nSilahkan coba ulang" << endl;
