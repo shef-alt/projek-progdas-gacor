@@ -1,5 +1,5 @@
-#ifndef __USER
-#define __USER
+#ifndef USER_HPP
+#define USER_HPP
 
 #include <string>
 #include <iostream>
@@ -32,20 +32,4 @@ class User {
       void display();
       void transfer();
 };
-
-class Admin : public User {
-   private:
-      string password;
-
-   public:
-      Admin(const char* password);
-
-      void adminInput();
-      void opsiAdmin();
-      void setOpsiAdmin(int opsi);
-};
-
-void start();
-void login();
-void list(string username, int pin);
 #endif 

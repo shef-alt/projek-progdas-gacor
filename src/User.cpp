@@ -1,6 +1,5 @@
-#include <iostream>
-#include <string>
 #include "User.hpp"
+#include "controller.hpp"
 
 // User //
 User::User(const char* u, int pin, int rek, long saldo)
@@ -9,13 +8,6 @@ User::User(const char* u, int pin, int rek, long saldo)
 long User::stock = 500000000;
 long User::saldo2 = 0;  //Saldo awal untuk tiap rekening kedua adalah nol
 string User::log = "";
-
-User user1 = User("Nala", 123456, 1, 6500000);
-User user2 = User("Nopal", 567241, 1, 5000000);
-User user3 = User("Santos", 721949, 1, 3200000);
-User user4 = User("Arkana", 652834, 1, 1300000);
-User user5 = User("Warsun", 654321, 1, 50000000);
-Admin admin = Admin("admin6767");
 
 string User::getName(){
    return this->username;
@@ -173,123 +165,4 @@ void User::display(){
    }
    chooseOpsi();
 }
-
-// Admin //
-Admin::Admin(const char* password)
-         : User("", 0, 0, 0) 
-         {
-            this->password = password;
-         };;
-
-void Admin::adminInput(){
-   string password;
-   cout << "Masukkan password: ";
-   cin >> password;
-   if(this->password == password){
-      opsiAdmin();
-   }else{
-      cout << "Password ditolak!\nSilahkan coba lagi";
-      login();
-   }
-}
-
-void Admin::opsiAdmin(){
-   int opsi;
-   cout << "==============================\n";
-   cout << "Pilih opsi berikut: \n1. Lihat stock uang\n2. Restock uang\n3. Ambil stock uang\n4. Lihat log transaksi\n5. Exit\nMasukkan opsi: ";
-   cin >> opsi;
-   setOpsiAdmin(opsi);
-   opsiAdmin();
-}
-
-void Admin::setOpsiAdmin(int opsi){
-   long stock;
-   int rek;
-   switch (opsi){
-      case 1:
-         cout << "===============================\n";
-         cout << "Stock uang di ATM: " << this->stock << endl;
-         break;
-      case 2:
-         cout << "Masukkan stock uang: ";
-         cin >> stock;
-         this->stock += stock;
-         break;
-      case 3:
-         cout << "Ambil stock uang: ";
-         cin >> stock;
-         this->stock -= stock;
-         break;
-      case 4:
-         cout << "===============================\n";
-         cout << "Log Transaksi: \n" << log;
-         break;
-      case 5: 
-         login();
-         break;
-      default:
-         cout << "Input salah!";
-         opsiAdmin();
-         break;
-   }
-}
-
-void start(){
-   cout << "========================================\n";
-   cout << "||  Selamat datang di ATM Bianglala!  ||\n";
-   login();
-}
-
-void login(){
-   int opsi;
-   cout << "========================================\n";
-   cout << "Pilih Login sebagai:\n1. User/Nasabah\n2. Admin/Petugas ATM Center";
-   cout << "\nMasukkan opsi(1/2): ";
-   cin >> opsi;
-   if(opsi == 1){
-      string username;
-      int pin;
-      cout << "=======================================\n";
-      cout << "Anda login sebagai user\n";
-      cout << "Masukkan username: ";
-      cin >> username;
-      cout << "Masukkan pin(6 digit): ";
-      cin >> pin;
-      list(username, pin);
-      
-   }else if(opsi == 2){
-      cout << "=======================================\n";
-      cout << "Anda login sebagai admin\n";
-      admin.adminInput();
-   }else{
-      cout << "Masukan anda tidak valid!\nSilahkan coba ulang.\n";
-   }
-}
-
-void list(string username, int pin){
-   if (user1.getPin() == pin && user1.getName() == username) {
-      user1.chooseOpsi();
-   }else if (user2.getPin() == pin && user2.getName() == username) {
-      user2.chooseOpsi();
-   }else if (user3.getPin() == pin && user3.getName() == username) {
-      user3.chooseOpsi();
-   }else if (user4.getPin() == pin && user4.getName() == username) {
-      user4.chooseOpsi();
-   }else if (user5.getPin() == pin && user5.getName() == username) {
-      user5.chooseOpsi();
-   }else {
-      cout << "Username atau pin yang anda masukkan tidak ditemukan!\nSilahkan coba ulang" << endl;
-      login();
-   }
-}
-
-
-
-
-
-
-
-
-
-
 
